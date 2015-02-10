@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
-	
+
 	public class TreeLinkNode {
 		public int val;
 		public TreeLinkNode left, right, next;
@@ -21,6 +21,10 @@ public class Util {
 		public ListNode(int x) {
 			val = x;
 			next = null;
+		}
+
+		public String toString() {
+			return String.valueOf(val);
 		}
 	}
 
