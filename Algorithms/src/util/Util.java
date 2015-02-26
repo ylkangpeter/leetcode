@@ -5,6 +5,16 @@ import java.util.List;
 
 public class Util {
 
+	public static class UndirectedGraphNode {
+		public int label;
+		public List<UndirectedGraphNode> neighbors;
+
+		public UndirectedGraphNode(int x) {
+			label = x;
+			neighbors = new ArrayList<UndirectedGraphNode>();
+		}
+	}
+
 	public class TreeLinkNode {
 		public int val;
 		public TreeLinkNode left, right, next;
@@ -23,8 +33,16 @@ public class Util {
 			next = null;
 		}
 
+		private String toString(ListNode node) {
+			if (node == null) {
+				return null;
+			} else {
+				return node.val + " | " + toString(node.next);
+			}
+		}
+
 		public String toString() {
-			return String.valueOf(val);
+			return toString(this);
 		}
 	}
 

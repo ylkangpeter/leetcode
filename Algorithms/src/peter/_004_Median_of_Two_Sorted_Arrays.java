@@ -1,66 +1,58 @@
 package peter;
 
 /**
- * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number
- * of rows like this: (you may want to display this pattern in a fixed font for
- * better legibility)
- * 
- * <pre>
- * P   A   H   N
- * A P L S I I G
- * Y   I   R
- * </pre>
- * 
- * And then read line by line: "PAHNAPLSIIGYIR" Write the code that will take a
- * string and make this conversion given a number of rows:
- * 
- * string convert(string text, int nRows); convert("PAYPALISHIRING", 3) should
- * return "PAHNAPLSIIGYIR".
+ * There are two sorted arrays A and B of size m and n respectively. Find the
+ * median of the two sorted arrays. The overall run time complexity should be
+ * O(log (m+n)).
  * 
  * @author ylkang Feb 5, 2015
  */
 public class _004_Median_of_Two_Sorted_Arrays {
 
-	public String convert(String s, int nRows) {
-		if (nRows == 1 || nRows >= s.length()) {
-			return s;
-		}
+	public static double findMedianSortedArrays(int A[], int B[]) {
+		int startA = 0;
+		int endA = A.length - 1;
 
-		StringBuilder sb = new StringBuilder();
+		int startB = 0;
+		int endB = B.length - 1;
 
-		char[] chars = s.toCharArray();
+		int targetInx = (endB + endA) >>> 1;
+		int offset = 0;
 
-		// 1st line
-		int inx = 0;
-		while (inx < s.length()) {
-			sb.append(chars[inx]);
-			inx += 2 * nRows - 2;
-		}
+		while (offset < targetInx) {
+			int midA = (startA + endA) >>> 1;
+			int midB = (startB + endB) >>> 1;
 
-		// 2nd to n-1 line
-		for (int i = 1; i < nRows - 1; i++) {
-			inx = i;
-			boolean leftBorder = true;
-			while (inx < s.length()) {
-				sb.append(chars[inx]);
-				if (!leftBorder) {
-					inx += 2 * i;
-					if (inx < s.length()) {
-						sb.append(chars[inx]);
+			if (A[midA] == B[midB]) {
+				while (offset < targetInx) {
+					if (A[midA] >= B[midB]) {
+						midA++;
+					} else {
+						midB++;
 					}
+					offset++;
 				}
-				leftBorder = false;
-				inx += 2 * (nRows - i - 1);
+			} else if (A[midA] < B[midB]) {
+				offset = midA + startB;
+				startA = midA + 1;
+				endB = midB - 1;
+			} else {
+				offset = midB + startA;
+				startB = midB + 1;
+				endA = midA - 1 > startA ? midA - 1 : startA;
 			}
+
 		}
 
-		// last line
-		inx = nRows - 1;
-		while (inx < s.length()) {
-			sb.append(chars[inx]);
-			inx += 2 * nRows - 2;
+		if (startA == endA) {
+
 		}
-		return sb.toString();
+		return 0;
 	}
 
+	public static void main(String[] args) {
+		int[] A = { 1, 2, 3, 4, 5, 6, 7, 8 };
+		int[] B = { 1, 4, 9, 9, 11, 11, 22, 33 };
+		System.out.println(findMedianSortedArrays(A, B));
+	}
 }

@@ -1,6 +1,7 @@
 package peter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,5 +42,21 @@ public class _078_Subsets {
 		if (S == null) {
 			return;
 		}
+		List<Integer> tmp = new ArrayList<Integer>();
+		tmp.addAll(prefixList);
+		if (inx == S.length) {
+			Collections.sort(tmp);
+			list.add(tmp);
+			return;
+		}
+
+		subsets(S, prefixList, list, inx + 1);
+		tmp.add(S[inx]);
+		subsets(S, tmp, list, inx + 1);
+
+	}
+
+	public static void main(String[] args) {
+		System.out.println(subsets(new int[] { 1, 2 }));
 	}
 }
