@@ -22,7 +22,6 @@ public class _055_Jump_Game {
 			return true;
 		}
 
-		int penalty = 0;
 		int maxLen = A[0];
 
 		int offset = 0;
