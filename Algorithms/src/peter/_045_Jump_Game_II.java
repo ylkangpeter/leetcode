@@ -30,6 +30,12 @@ public class _045_Jump_Game_II {
 			this.dis2Next = next;
 			this.offset = offset;
 		}
+
+		@Override
+		public String toString() {
+			return String.format("toEnd:%s,toNext£º%s,offset£º%s", distance2End,
+					dis2Next, offset);
+		}
 	}
 
 	public static int jump(int[] A) {
@@ -47,23 +53,25 @@ public class _045_Jump_Game_II {
 			if (A[inx] > 0) {
 				if (A[inx] >= currentDestDistance) {
 					list.clear();
-					list.add(new Node(1, 0, inx));
-
+					list.add(new Node(1, 1, inx));
 				} else {
-					int i = Math.min(A[inx], list.size());
 					if (!list.isEmpty()) {
-						if (A[inx] >= list.get(0).dis2Next) {
-							while (list.size() > 1) {
-								distance = list.get(0).offset - inx;
-								if (distance < A[inx]) {
-									list.remove();
-								} else {
-									break;
-								}
+						int distance = A[inx];
+						int gap = distance + inx - list.get(0).dis2Next
+								- list.get(0).offset;
+						Node tailPoint = null;
+						while (gap >= 0 && !list.isEmpty()) {
+							tailPoint = list.remove();
+							if (!list.isEmpty()) {
+								gap -= list.get(0).dis2Next;
 							}
-							int dis = list.get(0).distance2End + 1;
-							list.addFirst(new Node(dis, inx));
 						}
+						if (list.isEmpty()) {
+							list.add(tailPoint);
+						}
+						int dis = list.get(0).distance2End + 1;
+						list.addFirst(new Node(dis, list.get(0).offset - inx,
+								inx));
 					}
 				}
 			}
@@ -74,7 +82,31 @@ public class _045_Jump_Game_II {
 		return list.get(0).distance2End;
 	}
 
+	public int jump_better(int[] array) {
+		if (array == null || array.length <= 1)
+			return 0;
+		int oldMax = array[0];
+		int newMax = array[0];
+		int ret = 1;
+		for (int i = 1; i < array.length; i++) {
+			if (oldMax >= array.length - 1)
+				return ret;
+			if (i > oldMax) {
+				ret++;
+				oldMax = newMax;
+				if (i > oldMax)
+					return Integer.MAX_VALUE;
+			}
+			newMax = Math.max(newMax, i + array[i]);
+		}
+		return ret;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(jump(new int[] { 3, 4, 3, 2, 5, 4, 3 }));
+		System.out
+				.println(jump(new int[] { 5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0 }));
+		System.out.println(jump(new int[] { 6, 9, 1, 5, 6, 0, 0, 5, 9 }));
+		System.out.println(jump(new int[] { 1, 2, 1, 1, 1 }));
 	}
 }
