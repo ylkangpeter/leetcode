@@ -5,6 +5,17 @@ import java.util.List;
 
 public class Util {
 
+	public static class RandomListNode {
+
+		public int label;
+
+		public RandomListNode next, random;
+
+		public RandomListNode(int x) {
+			this.label = x;
+		}
+	}
+
 	public static class UndirectedGraphNode {
 		public int label;
 		public List<UndirectedGraphNode> neighbors;
@@ -56,7 +67,7 @@ public class Util {
 		}
 
 		public String toString() {
-			return String.valueOf(val);
+			return String.format("{v=%s,l=%s,r=%s}", val, left, right);
 		}
 	}
 
