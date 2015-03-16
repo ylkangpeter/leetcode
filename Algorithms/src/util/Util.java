@@ -115,6 +115,26 @@ public class Util {
 		return list;
 	}
 
+	public static class Interval {
+		public int start;
+		public int end;
+
+		public Interval() {
+			start = 0;
+			end = 0;
+		}
+
+		public Interval(int s, int e) {
+			start = s;
+			end = e;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("[%s,%s]", start, end);
+		}
+	}
+
 	public static void main(String[] args) {
 
 		String[] tree = "1,2,3,-1,-1,-1,4".split(",");

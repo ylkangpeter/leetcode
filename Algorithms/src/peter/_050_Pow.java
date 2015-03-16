@@ -4,7 +4,7 @@ package peter;
  * 
  * @author ylkang Feb 25, 2015
  */
-public class _50_Pow {
+public class _050_Pow {
 
 	public double pow(double x, int n) {
 		if (n == 0)
