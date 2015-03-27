@@ -1,0 +1,6 @@
+line=`wc -l file.txt | awk '{print $1}'`
+
+if [ $line -gt 9 ];
+then
+  head -n 10 file.txt | tail -n 1
+fi

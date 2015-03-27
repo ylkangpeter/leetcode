@@ -2,7 +2,6 @@ package peter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * The n-queens puzzle is the problem of placing n queens on an n×n chessboard
@@ -38,27 +37,91 @@ public class _051_N_Queens {
 	public static List<String[]> solveNQueens(int n) {
 
 		List<String[]> list = new ArrayList<String[]>();
-
-		Stack<Integer> stack = new Stack<Integer>();
-
-		int[][] square = new int[n][n];
-
-		int pre = -1;
-		while (stack.size() != n) {
-			for (int i = pre + 1; i < 9; i++) {
-				if (isOk(i)) {
-					square[stack.size()][i] = 1;
-					break;
-				}
-			}
-			pre = stack.pop();
+		if (n <= 0) {
+			return list;
 		}
+		
+		byte[][] matrix = new byte[n][n];
+
+		calc(matrix, 0, list, n);
 
 		return list;
 	}
 
-	private static boolean isOk(int i) {
-		// TODO Auto-generated method stub
-		return false;
+	private static void calc(byte[][] matrix, int currentLayer,
+			List<String[]> list, int totalLayer) {
+		if (currentLayer == totalLayer) {
+			String[] strs = new String[totalLayer];
+			for (int i = 0; i < totalLayer; i++) {
+				StringBuilder sb = new StringBuilder();
+				for (int j = 0; j < totalLayer; j++) {
+					if (matrix[i][j] == 1) {
+						sb.append("Q");
+					} else {
+						sb.append(".");
+					}
+				}
+				strs[i] = sb.toString();
+			}
+			list.add(strs);
+		} else {
+			for (int i = 0; i < totalLayer; i++) {
+				if (isOk(matrix, i, currentLayer)) {
+					matrix[currentLayer][i] = 1;
+					calc(matrix, currentLayer + 1, list, totalLayer);
+					matrix[currentLayer][i] = 0;
+				}
+			}
+		}
+
+	}
+
+	private static boolean isOk(byte[][] matrix, int col, int row) {
+		int n = matrix.length;
+		// cols
+		for (int i = 0; i < n; i++) {
+			if (matrix[i][col] == 1) {
+				return false;
+			}
+		}
+		// cross up-right
+		int _col = col;
+		int _row = row;
+		while (++_col < n && --_row >= 0) {
+			if (matrix[_row][_col] == 1) {
+				return false;
+			}
+		}
+		// cross up-left
+		_col = col;
+		_row = row;
+		while (--_col >= 0 && --_row >= 0) {
+			if (matrix[_row][_col] == 1) {
+				return false;
+			}
+		}
+		// cross down-left
+		_col = col;
+		_row = row;
+		while (--_col >= 0 && ++_row < n) {
+			if (matrix[_row][_col] == 1) {
+				return false;
+			}
+		}
+		// cross down-right
+		_col = col;
+		_row = row;
+		while (++_col < n && ++_row < n) {
+			if (matrix[_row][_col] == 1) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(solveNQueens(2));
+		System.out.println(solveNQueens(8));
 	}
 }
