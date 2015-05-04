@@ -1,7 +1,5 @@
 #!/bin/sh
 
-mail=$1
-
 rm -fr *.tmp
 rm -fr *.res
 #rm shell
@@ -19,12 +17,12 @@ function check () {
     diff ${2}.tmp ${2}.cur > ${2}.res
     if test -s ${2}.res;
     then
-      echo "update in "${2} |mail -s "leetcode problem updated!" $3
+      echo "update in "${2} |mail -s "leetcode problem updated!" kangyongliang@baidu.com
     fi
   fi
 }
 
-check $url1 alogrithms $mail
-check $url2 database $mail
-check $url3 shell $mail
+check $url1 alogrithms
+check $url2 database
+check $url3 shell
 
