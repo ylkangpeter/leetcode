@@ -19,7 +19,7 @@ function check () {
     diff ${2}.tmp ${2}.cur > ${2}.res
     if test -s ${2}.res;
     then
-      echo "update in "${2} |mail -s "leetcode problem updated!" $3
+      cat ${2}.res |mail -s "leetcode problem updated!" $3
     fi
   fi
 }
