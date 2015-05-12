@@ -34,61 +34,55 @@ public class _091_Decode_Ways {
 		if (s.length() == 1) {
 			return 1;
 		}
-		int pre = 1;
-		int cur = 2;
 
-		boolean prepreZero = false;
-		boolean endWithZero = false;
+		int[] vals = new int[s.length()];
+		vals[0] = 1;
+		vals[1] = 2;
+
+		int preVal = 1;
 
 		if (s.charAt(1) == '0') {
-			if (s.charAt(0) != '1') {
+			if (s.charAt(0) != '1' && s.charAt(0) != '2') {
 				return 0;
 			}
-			cur = 1;
-			endWithZero = true;
+			vals[1] = 1;
 		} else {
 			int val = Integer.parseInt(s.substring(0, 2));
 			if (val > 26) {
-				cur = 1;
+				vals[1] = 1;
 			}
 		}
+		preVal = Character.digit(s.charAt(1), 10);
 
 		for (int i = 2; i < s.length(); i++) {
 
-			boolean tmpEndWithZero = endWithZero;
-
 			if (s.charAt(i) == '0') {
-				if (endWithZero || s.charAt(i - 1) != '1') {
+				if (preVal == 0
+						|| (s.charAt(i - 1) != '1' && s.charAt(i - 1) != '2')) {
 					return 0;
 				}
-				endWithZero = true;
-				pre = cur;
+				preVal = 0;
+				vals[i] = vals[i - 2];
 			} else {
-				if (endWithZero) {
-					pre = cur;
-					endWithZero = false;
+				if (preVal == 0) {
+					preVal = s.charAt(i);
+					vals[i] = vals[i - 1];
 				} else {
 					int val = Integer.parseInt(s.substring(i - 1, i + 1));
 					if (val > 26) {
-						pre = cur;
+						vals[i] = vals[i - 1];
 					} else {
-						int tmp = cur + pre;
-						pre = cur;
-						cur = tmp;
+						vals[i] = vals[i - 1] + vals[i - 2];
 					}
 				}
 			}
-
-			if (tmpEndWithZero) {
-				prepreZero = true;
-			} else {
-				prepreZero = false;
-			}
 		}
-		return cur;
+		return vals[s.length() - 1];
 	}
 
 	public static void main(String[] args) {
+		System.out.println(new _091_Decode_Ways().numDecodings("20"));
+		System.out.println(new _091_Decode_Ways().numDecodings("12120"));
 		System.out.println(new _091_Decode_Ways().numDecodings("110"));
 		System.out.println(new _091_Decode_Ways().numDecodings("27"));
 		System.out.println(new _091_Decode_Ways().numDecodings("12"));
