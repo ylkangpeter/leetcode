@@ -18,6 +18,35 @@ package peter;
 public class _209_Minimum_Size_Subarray_Sum {
 
 	public int minSubArrayLen(int s, int[] nums) {
-		return 0;
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+
+		int startInx = 0;
+		int length = Integer.MAX_VALUE;
+
+		int total = 0;
+		for (int i = 0; i < nums.length; i++) {
+			total += nums[i];
+			if (total >= s) {
+				while (total >= s) {
+					length = Math.min(length, i - startInx + 1);
+					total -= nums[startInx];
+					startInx++;
+				}
+			}
+		}
+
+		return length == Integer.MAX_VALUE ? 0 : length;
+	}
+
+	public static void main(String[] args) {
+
+		System.out.println(new _209_Minimum_Size_Subarray_Sum().minSubArrayLen(
+				7, new int[] { 2, 3, 1, 2, 4, 3 }));
+		System.out.println(new _209_Minimum_Size_Subarray_Sum().minSubArrayLen(
+				11, new int[] { 1, 2, 3, 4, 5 }));
+		System.out.println(new _209_Minimum_Size_Subarray_Sum().minSubArrayLen(
+				17, new int[] { 2, 3, 1, 2, 4, 3, 7 }));
 	}
 }
