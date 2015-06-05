@@ -16,7 +16,8 @@ public class _111_Minimum_Depth_of_Binary_Tree {
 		}
 
 		int total = 1;
-		Stack[] stack = new Stack[2];
+		@SuppressWarnings("unchecked")
+		Stack<TreeNode>[] stack = new Stack[2];
 		stack[0] = new Stack<TreeNode>();
 		stack[1] = new Stack<TreeNode>();
 

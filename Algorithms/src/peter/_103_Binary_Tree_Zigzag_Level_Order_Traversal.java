@@ -35,6 +35,7 @@ import util.Util.TreeNode;
  */
 public class _103_Binary_Tree_Zigzag_Level_Order_Traversal {
 
+	@SuppressWarnings("unchecked")
 	public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
 
 		LinkedList<List<Integer>> list = new LinkedList<List<Integer>>();
@@ -44,7 +45,7 @@ public class _103_Binary_Tree_Zigzag_Level_Order_Traversal {
 
 		boolean left2Right = true;
 
-		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@SuppressWarnings({ "rawtypes" })
 		LinkedList[] stacks = new LinkedList[2];
 		stacks[0] = new LinkedList<TreeNode>();
 		stacks[1] = new LinkedList<TreeNode>();
@@ -54,7 +55,7 @@ public class _103_Binary_Tree_Zigzag_Level_Order_Traversal {
 
 		while (!stacks[0].isEmpty() || !stacks[1].isEmpty()) {
 
-			LinkedList currentStack = stacks[i % 2];
+			LinkedList<TreeNode> currentStack = stacks[i % 2];
 			i = (i + 1) % 2;
 
 			LinkedList<Integer> innerList = new LinkedList<Integer>();

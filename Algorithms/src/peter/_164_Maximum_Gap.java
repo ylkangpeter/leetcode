@@ -1,9 +1,5 @@
 package peter;
 
-import java.util.BitSet;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Given an unsorted array, find the maximum difference between the successive
  * elements in its sorted form.
@@ -23,53 +19,69 @@ import java.util.Set;
 public class _164_Maximum_Gap {
 
 	public int maximumGap(int[] num) {
-		if (num.length < 2) {
+
+		// radix sort
+		if (num == null || num.length < 2) {
 			return 0;
 		}
 
-		Integer[][] bucket = new Integer[num.length][32];
+		int mask = 1;
+		int[] tmpNum = new int[num.length];
 
-		Set<Integer> set = new HashSet<Integer>();
+		for (int i = 0; i < 32; i++) {
+			int[] tmp = num;
+			num = tmpNum;
+			tmpNum = tmp;
 
-		for (Integer val : set) {
-			
+			int start = 0;
+			int end = num.length - 1;
+
+			for (int j = 0; j < num.length; j++) {
+				if ((tmpNum[j] & mask) == 0) {
+					num[start++] = tmpNum[j];
+				}
+				if ((tmpNum[tmpNum.length - 1 - j] & mask) != 0) {
+					num[end--] = tmpNum[tmpNum.length - 1 - j];
+				}
+			}
+			mask <<= 1;
+
 		}
 
-		return 0;
+		int max = Integer.MIN_VALUE;
+		for (int i = 1; i < num.length; i++) {
+			max = Math.max(max, num[i] - num[i - 1]);
+		}
+		return max;
 	}
 
-	public static int maximumGap_Exception(int[] num) {
-		if (num.length < 2) {
-			return 0;
+	public int maximumGap1(int[] num) {
+		int len = num.length;
+		int mask = 1;
+		int[] num2 = new int[len];
+		for (int i = 0; i < 31; i++) {
+			int[] tmp = num;
+			num = num2;
+			num2 = tmp;
+			int s = 0;
+			int e = len - 1;
+			for (int j = 0; j < len; j++) {
+				if ((num2[j] & mask) == 0)
+					num[s++] = num2[j];
+				if ((num2[len - 1 - j] & mask) > 0)
+					num[e--] = num2[len - 1 - j];
+			}
+			mask <<= 1;
 		}
-
-		BitSet set = new BitSet(Integer.MAX_VALUE);
 		int max = 0;
-		int min = Integer.MAX_VALUE;
-		for (int i = 0; i < num.length; i++) {
-			set.set(num[i]);
-			if (num[i] > max) {
-				max = num[i];
-			}
-			if (num[i] < min) {
-				min = num[i];
-			}
+		for (int i = 1; i < len; i++) {
+			max = Math.max(max, num[i] - num[i - 1]);
 		}
-
-		int len = 0;
-		int maxLen = 0;
-		for (int i = min; i <= max; i++) {
-			if (set.get(i)) {
-				len++;
-			} else {
-				maxLen = maxLen > len ? maxLen : len;
-				len = 0;
-			}
-		}
-		return maxLen = maxLen > len ? maxLen - 1 : len - 1;
+		return max;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(maximumGap_Exception(new int[] { 1, 10000000 }));
+		System.out.println(new _164_Maximum_Gap().maximumGap(new int[] { 1,
+				10000000 }));
 	}
 }

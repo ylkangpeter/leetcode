@@ -26,7 +26,8 @@ public class _104_Maximum_Depth_of_Binary_Tree {
 			}
 
 			int total = 0;
-			Stack[] stack = new Stack[2];
+			@SuppressWarnings("unchecked")
+			Stack<TreeNode>[] stack = new Stack[2];
 			stack[0] = new Stack<TreeNode>();
 			stack[1] = new Stack<TreeNode>();
 

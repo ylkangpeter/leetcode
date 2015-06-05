@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class _022_Generate_Parentheses {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<String> generateParenthesis(int n) {
 		if (n == 0) {
 			return new ArrayList<String>();

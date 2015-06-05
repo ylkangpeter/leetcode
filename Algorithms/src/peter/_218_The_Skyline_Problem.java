@@ -9,6 +9,10 @@ import java.util.List;
 public class _218_The_Skyline_Problem {
 
 	public List<int[]> getSkyline(int[][] buildings) {
+		List<int[]> list = new ArrayList<int[]>();
+		if (buildings == null || buildings.length == 0) {
+			return list;
+		}
 
 		Arrays.sort(buildings, new Comparator<Object>() {
 			@Override
@@ -23,7 +27,6 @@ public class _218_The_Skyline_Problem {
 					return 0;
 			}
 		});
-		List<int[]> list = new ArrayList<int[]>();
 		List<List<int[]>> squares = new ArrayList<List<int[]>>();
 		list.add(new int[] { buildings[0][0], buildings[0][2] });
 		list.add(new int[] { buildings[0][1], buildings[0][2] });
@@ -32,8 +35,21 @@ public class _218_The_Skyline_Problem {
 		for (int i = 1; i < buildings.length; i++) {
 			merge(squares, buildings[i]);
 		}
-		System.out.println(squares);
-		return null;
+
+		List<int[]> result = new ArrayList<int[]>();
+		for (List<int[]> square : squares) {
+			boolean isAdd = false;
+			for (int[] cube : square) {
+				if (!isAdd) {
+					result.add(new int[] { cube[0], cube[1] });
+					isAdd = true;
+				} else {
+					isAdd = false;
+				}
+			}
+			result.add(new int[] { square.get(square.size() - 1)[0], 0 });
+		}
+		return result;
 	}
 
 	private void merge(List<List<int[]>> squares, int[] newSquare) {
@@ -48,35 +64,36 @@ public class _218_The_Skyline_Problem {
 		list = new ArrayList<int[]>();
 		list.add(new int[] { newSquare[0], newSquare[2] });
 		int start = Collections.binarySearch(squares, list, new MyComparator());
-
+		if (start < 0) {
+			start = -start - 1;
+		}
+		if (end < 0) {
+			end = -end - 1;
+		}
 		if (start == end) {
 			list.add(new int[] { newSquare[1], newSquare[2] });
-			if (start < 0) {
-				start = -start - 1;
-			}
+
 			if (start == 0) {
 				squares.add(0, list);
 			} else {
 				List<int[]> tmp = squares.get(start - 1);
 				if (tmp.get(tmp.size() - 1)[0] >= newSquare[0]) {
-					tmp.add(new int[] { tmp.get(tmp.size() - 1)[0],
-							newSquare[2] });
-					tmp.add(new int[] { newSquare[1], newSquare[2] });
+					if (newSquare[2] < tmp.get(tmp.size() - 1)[1]) {
+						tmp.add(new int[] { tmp.get(tmp.size() - 1)[0],
+								newSquare[2] });
+						tmp.add(new int[] { newSquare[1], newSquare[2] });
+					} else {
+						tmp.get(tmp.size() - 1)[0] = Math.max(
+								tmp.get(tmp.size() - 1)[0], newSquare[1]);
+					}
 				} else {
 					squares.add(start, list);
 				}
 			}
 		} else {
-			if (start < 0) {
-				start = -start - 1;
-			}
-			if (end < 0) {
-				end = -end - 1;
-			}
+
 			// merge start to end-1
 			list.add(new int[] { squares.get(start).get(0)[0], newSquare[2] });
-
-			List<List<int[]>> result = new ArrayList<List<int[]>>();
 
 			if (start != 0) {
 				int tmp = squares.get(start - 1).get(
@@ -92,10 +109,7 @@ public class _218_The_Skyline_Problem {
 					list.addAll(squares.get(start - 1));
 				}
 
-			} else {
-				list.addAll(squares.get(start));
 			}
-
 			int val = squares.get(end - 1).get(squares.get(end - 1).size() - 1)[0];
 
 			if (val < newSquare[1]) {
@@ -107,14 +121,9 @@ public class _218_The_Skyline_Problem {
 				squares.get(squares.size() - 1).add(
 						new int[] { newSquare[1], newSquare[2] });
 			}
-			squares.get(end - 1).add(0,
-					new int[] { squares.get(end - 1).get(0)[0], newSquare[2] });
 
 			for (int i = start; i < end; i++) {
 				list.addAll(squares.get(i));
-				list.add(new int[] {
-						squares.get(i).get(squares.get(i).size() - 1)[1],
-						newSquare[2] });
 			}
 
 			int inx = end;
@@ -144,8 +153,16 @@ public class _218_The_Skyline_Problem {
 
 	public static void main(String[] args) {
 		System.out.println(new _218_The_Skyline_Problem()
+				.getSkyline(new int[][] { { 0, 2, 3 }, { 2, 5, 3 } }));
+		System.out.println(new _218_The_Skyline_Problem()
+				.getSkyline(new int[][] { { 0, 5, 7 }, { 5, 10, 7 },
+						{ 5, 10, 12 }, { 10, 15, 7 }, { 15, 20, 7 },
+						{ 15, 20, 12 }, { 20, 25, 7 } }));
+		System.out.println(new _218_The_Skyline_Problem()
 				.getSkyline(new int[][] { { 2, 9, 10 }, { 3, 7, 15 },
-						{ 5, 12, 12 }, { 15, 20, 10 }, { 19, 24, 8 },
-						{ 10, 13, 13 } }));
+						{ 5, 12, 12 }, { 15, 20, 10 }, { 19, 24, 8 }
+				// ,{ 10, 13, 13 }
+				}));
+
 	}
 }

@@ -51,8 +51,7 @@ public class _210_Course_Schedule_II {
 		return visited == incLinkCounts.length ? order : new int[0];
 	}
 
-	private int[] solveByDFS(List<List<Integer>> adjs) {
-		BitSet hasCycle = new BitSet(1);
+	public int[] solveByDFS(List<List<Integer>> adjs) {
 		BitSet visited = new BitSet(adjs.size());
 		BitSet onStack = new BitSet(adjs.size());
 		Deque<Integer> order = new ArrayDeque<>();

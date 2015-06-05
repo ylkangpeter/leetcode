@@ -14,6 +14,7 @@ public class _102_Binary_Tree_Level_Order_Traversal {
 	/*
 	 * 2 queue here? emmm, cause it's from another function.. so just reuse it
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<List<Integer>> levelOrder(TreeNode root) {
 
 		List<List<Integer>> list = new ArrayList<List<Integer>>();

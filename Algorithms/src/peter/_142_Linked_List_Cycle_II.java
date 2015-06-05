@@ -74,9 +74,9 @@ public class _142_Linked_List_Cycle_II {
 		ListNode a = new ListNode(1);
 		ListNode b = new ListNode(2);
 		ListNode c = new ListNode(3);
-		ListNode d = new ListNode(4);
-		ListNode e = new ListNode(5);
-		ListNode f = new ListNode(6);
+//		ListNode d = new ListNode(4);
+//		ListNode e = new ListNode(5);
+//		ListNode f = new ListNode(6);
 		node.next = a;
 		a.next = a;
 		b.next = c;

@@ -3,7 +3,6 @@ package peter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * iven an array of words and a length L, format the text such that each line

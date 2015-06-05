@@ -1,11 +1,26 @@
 package peter;
 
 /**
+ * Given a 2D binary matrix filled with 0's and 1's, find the largest square
+ * containing all 1's and return its area.
+ * 
+ * For example, given the following matrix:
+ * 
+ * <pre>
+ * 1 0 1 0 0
+ * 1 0 1 1 1
+ * 1 1 1 1 1
+ * 1 0 0 1 0
+ * </pre>
+ * 
+ * Return 4.
  * 
  * @author ylkang Jun 3, 2015
  */
-public class _085_Maximal_Rectangle {
-	public int maximalRectangle(char[][] matrix) {
+public class _221_Maximal_Square {
+
+	public int maximalSquare(char[][] matrix) {
+
 		if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
 			return 0;
 		int m = matrix.length;
@@ -21,14 +36,13 @@ public class _085_Maximal_Rectangle {
 		int maxA = 0;
 		for (int i = 0; i < m; i++) {
 			int cur_left = 0, cur_right = n;
-			for (int j = 0; j < n; j++) { // compute height (can do this from
-											// either side)
+			for (int j = 0; j < n; j++) {
 				if (matrix[i][j] == '1')
 					height[j]++;
 				else
 					height[j] = 0;
 			}
-			for (int j = 0; j < n; j++) { // compute left (from left to right)
+			for (int j = 0; j < n; j++) {
 				if (matrix[i][j] == '1')
 					left[j] = Math.max(left[j], cur_left);
 				else {
@@ -46,22 +60,14 @@ public class _085_Maximal_Rectangle {
 				}
 			}
 			// compute the area of rectangle (can do this from either side)
-			for (int j = 0; j < n; j++)
-				maxA = Math.max(maxA, (right[j] - left[j]) * height[j]);
+			for (int j = 0; j < n; j++) {
+				int w = right[j] - left[j];
+				int h = height[j];
+				int line = Math.min(w, h);
+				maxA = Math.max(maxA, line * line);
+			}
 		}
 		return maxA;
-	}
 
-	public static void main(String[] args) {
-//		System.out.println(new _085_Maximal_Rectangle()
-//				.maximalRectangle(new char[][] {
-//						{ '1', '1', '1', '1', '1', '1' },
-//						{ '1', '1', '1', '1', '0', '1' },
-//						{ '1', '1', '1', '1', '0', '1' } }));
-		System.out.println(new _085_Maximal_Rectangle()
-				.maximalRectangle(new char[][] {
-						{ '0', '0', '1', '1', '0', '1' },
-						{ '1', '1', '1', '1', '0', '1' },
-						{ '1', '1', '1', '1', '0', '1' } }));
 	}
 }

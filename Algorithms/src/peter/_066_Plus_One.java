@@ -1,7 +1,5 @@
 package peter;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Given a non-negative number represented as an array of digits, plus one to
@@ -15,7 +13,6 @@ import java.util.List;
 public class _066_Plus_One {
 
 	public int[] plusOne(int[] digits) {
-		List<Integer> list = new ArrayList<Integer>();
 		int promotion = 0;
 		if (digits == null) {
 			return new int[] { 0 };
