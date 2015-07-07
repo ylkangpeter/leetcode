@@ -12,7 +12,7 @@ import java.util.List;
  * @author ylkang Jun 26, 2015
  */
 
-public class _229_Summary_Ranges {
+public class _228_Summary_Ranges {
 
 	public List<String> summaryRanges(int[] nums) {
 
@@ -54,16 +54,16 @@ public class _229_Summary_Ranges {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new _229_Summary_Ranges()
-				.summaryRanges(new int[] { 0 }));
-		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
-				1, 2, 4, 5 }));
-		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
-				1, 2, 4, 5, 7, 8, 9 }));
-		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
-				1, 2, 3, 4, 5 }));
-		System.out.println(new _229_Summary_Ranges()
-				.summaryRanges(new int[] { -1 }));
+//		System.out.println(new _229_Summary_Ranges()
+//				.summaryRanges(new int[] { 0 }));
+//		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
+//				1, 2, 4, 5 }));
+//		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
+//				1, 2, 4, 5, 7, 8, 9 }));
+//		System.out.println(new _229_Summary_Ranges().summaryRanges(new int[] {
+//				1, 2, 3, 4, 5 }));
+//		System.out.println(new _229_Summary_Ranges()
+//				.summaryRanges(new int[] { -1 }));
 
 	}
 }

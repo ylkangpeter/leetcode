@@ -2,7 +2,7 @@ package peter;
 
 import util.Util.TreeNode;
 
-public class _227_Invert_Binary_Tree {
+public class _226_Invert_Binary_Tree {
 
 	public TreeNode invertTree(TreeNode root) {
 		if (root == null) {
@@ -25,6 +25,6 @@ public class _227_Invert_Binary_Tree {
 		node.left.right = new TreeNode(5);
 		node.right.left = new TreeNode(6);
 		node.right.right = new TreeNode(7);
-		System.out.println(new _227_Invert_Binary_Tree().invertTree(node));
+		System.out.println(new _226_Invert_Binary_Tree().invertTree(node));
 	}
 }

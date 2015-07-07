@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * @author ylkang Jun 29, 2015
  */
-public class _230_Majority_Element_II {
+public class _229_Majority_Element_II {
 
 	public List<Integer> majorityElement(int[] nums) {
 		List<Integer> result = new ArrayList<Integer>();

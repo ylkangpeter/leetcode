@@ -22,7 +22,7 @@ import java.util.Queue;
  * 
  * @author ylkang Jun 11, 2015
  */
-public class _226_Implement_Stack_using_Queues {/*
+public class _225_Implement_Stack_using_Queues {/*
 												 * cur refers to Q containing
 												 * all the elements
 												 */
@@ -61,10 +61,5 @@ public class _226_Implement_Stack_using_Queues {/*
 	}
 
 	public static void main(String[] args) {
-		_226_Implement_Stack_using_Queues a = new _226_Implement_Stack_using_Queues();
-		a.push(1);
-		a.push(2);
-		a.push(3);
-		a.pop();
 	}
 }

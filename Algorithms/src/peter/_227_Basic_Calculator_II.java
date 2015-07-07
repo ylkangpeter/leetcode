@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-public class _228_Basic_Calculator_II {
+public class _227_Basic_Calculator_II {
 
 	private static final Set<String> operatorMap = new HashSet<String>();
 	static {
@@ -130,9 +130,9 @@ public class _228_Basic_Calculator_II {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new _228_Basic_Calculator_II().calculate("3+2*2"));
-		System.out.println(new _228_Basic_Calculator_II().calculate("3/2"));
-		System.out.println(new _228_Basic_Calculator_II()
+		System.out.println(new _227_Basic_Calculator_II().calculate("3+2*2"));
+		System.out.println(new _227_Basic_Calculator_II().calculate("3/2"));
+		System.out.println(new _227_Basic_Calculator_II()
 				.calculate(" 3+5 / 2 "));
 	}
 }

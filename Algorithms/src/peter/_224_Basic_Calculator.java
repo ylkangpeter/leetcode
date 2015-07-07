@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-public class _225_Basic_Calculator {
+public class _224_Basic_Calculator {
 
 	private static final Set<String> operatorMap = new HashSet<String>();
 	static {
@@ -131,8 +131,8 @@ public class _225_Basic_Calculator {
 
 	public static void main(String[] args) {
 		 System.out.println(new
-		 _225_Basic_Calculator().calculate("(1-(3-4))"));
+		 _224_Basic_Calculator().calculate("(1-(3-4))"));
 		System.out
-				.println(new _225_Basic_Calculator().calculate("(7)-(0)+(4)"));
+				.println(new _224_Basic_Calculator().calculate("(7)-(0)+(4)"));
 	}
 }

@@ -6,7 +6,7 @@ import util.Util.TreeNode;
  * 
  * @author ylkang Jun 8, 2015
  */
-public class _224_Count_Complete_Tree_Nodes {
+public class _223_Count_Complete_Tree_Nodes {
 
 	public int countNodes(TreeNode root) {
 		if (root == null) {
@@ -52,7 +52,7 @@ public class _224_Count_Complete_Tree_Nodes {
 //		node.right.left = new TreeNode(1);
 		// node.left= new TreeNode(1);
 		// node.left= new TreeNode(1);
-		System.out.println(new _224_Count_Complete_Tree_Nodes()
+		System.out.println(new _223_Count_Complete_Tree_Nodes()
 				.countNodes(node));
 	}
 }

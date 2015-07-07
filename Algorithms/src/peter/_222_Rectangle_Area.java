@@ -1,6 +1,6 @@
 package peter;
 
-public class _223_Rectangle_Area {
+public class _222_Rectangle_Area {
 
 	public int computeArea(int A, int B, int C, int D, int E, int F, int G,
 			int H) {
@@ -43,11 +43,11 @@ public class _223_Rectangle_Area {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new _223_Rectangle_Area().computeArea(-2, -2, 2, 2,
+		System.out.println(new _222_Rectangle_Area().computeArea(-2, -2, 2, 2,
 				-3, -3, -1, -1));
-		System.out.println(new _223_Rectangle_Area().computeArea(0, 0, 0, 0,
+		System.out.println(new _222_Rectangle_Area().computeArea(0, 0, 0, 0,
 				-1, -1, 1, 1));
-		System.out.println(new _223_Rectangle_Area().computeArea(-3, 0, 3, 4,
+		System.out.println(new _222_Rectangle_Area().computeArea(-3, 0, 3, 4,
 				0, -1, 9, 2));
 	}
 }
