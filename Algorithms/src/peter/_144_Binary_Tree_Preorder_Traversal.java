@@ -8,9 +8,9 @@ import util.Util.TreeNode;
 
 /**
  * Given a binary tree, return the preorder traversal of its nodes' values.
- * 
+ * <p/>
  * For example: Given binary tree {1,#,2,3},
- * 
+ * <p/>
  * <pre>
  *    1
  *     \
@@ -18,33 +18,33 @@ import util.Util.TreeNode;
  *     /
  *    3
  * </pre>
- * 
+ * <p/>
  * return [1,2,3].
- * 
+ * <p/>
  * Note: Recursive solution is trivial, could you do it iteratively?
- * 
+ *
  * @author ylkang Feb 5, 2015
  */
 public class _144_Binary_Tree_Preorder_Traversal {
 
-	public List<Integer> preorderTraversal(TreeNode root) {
-		List<Integer> list = new ArrayList<Integer>();
-		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
-		stack.push(root);
-		while (!stack.isEmpty()) {
-			TreeNode node = stack.pop();
-			if (node != null) {
-				list.add(node.val);
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<Integer>();
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node != null) {
+                list.add(node.val);
 
-				if (node.right != null) {
-					stack.push(node.right);
-				}
-				if (node.left != null) {
-					stack.push(node.left);
-				}
-			}
-		}
-		return list;
-	}
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+            }
+        }
+        return list;
+    }
 
 }

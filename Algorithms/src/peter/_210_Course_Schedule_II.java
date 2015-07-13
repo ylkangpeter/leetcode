@@ -14,7 +14,7 @@ import java.util.Queue;
 public class _210_Course_Schedule_II {
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
 		int[] incLinkCounts = new int[numCourses];
-		List<List<Integer>> adjs = new ArrayList<>(numCourses);
+		List<List<Integer>> adjs = new ArrayList(numCourses);
 		initialiseGraph(incLinkCounts, adjs, prerequisites);
 		return solveByBFS(incLinkCounts, adjs);
 		// return solveByDFS(adjs);
@@ -24,7 +24,7 @@ public class _210_Course_Schedule_II {
 			int[][] prerequisites) {
 		int n = incLinkCounts.length;
 		while (n-- > 0)
-			adjs.add(new ArrayList<>());
+			adjs.add(new ArrayList());
 		for (int[] edge : prerequisites) {
 			incLinkCounts[edge[0]]++;
 			adjs.get(edge[1]).add(edge[0]);
@@ -33,7 +33,7 @@ public class _210_Course_Schedule_II {
 
 	private int[] solveByBFS(int[] incLinkCounts, List<List<Integer>> adjs) {
 		int[] order = new int[incLinkCounts.length];
-		Queue<Integer> toVisit = new ArrayDeque<>();
+		Queue<Integer> toVisit = new ArrayDeque();
 		for (int i = 0; i < incLinkCounts.length; i++) {
 			if (incLinkCounts[i] == 0)
 				toVisit.offer(i);
@@ -54,7 +54,7 @@ public class _210_Course_Schedule_II {
 	public int[] solveByDFS(List<List<Integer>> adjs) {
 		BitSet visited = new BitSet(adjs.size());
 		BitSet onStack = new BitSet(adjs.size());
-		Deque<Integer> order = new ArrayDeque<>();
+		Deque<Integer> order = new ArrayDeque();
 		for (int i = adjs.size() - 1; i >= 0; i--) {
 			if (visited.get(i) == false
 					&& hasOrder(i, adjs, visited, onStack, order) == false)

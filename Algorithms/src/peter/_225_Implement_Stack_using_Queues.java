@@ -26,10 +26,10 @@ public class _225_Implement_Stack_using_Queues {/*
 												 * cur refers to Q containing
 												 * all the elements
 												 */
-	Queue<Integer> cur = new LinkedList<>();
+	Queue<Integer> cur = new LinkedList<Integer>();
 
 	/* other used as tmp Q; always empty after API called */
-	Queue<Integer> other = new LinkedList<>();
+	Queue<Integer> other = new LinkedList<Integer>();
 
 	private void swapQ() {
 		Queue<Integer> tmp = cur;

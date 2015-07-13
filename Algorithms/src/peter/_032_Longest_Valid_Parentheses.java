@@ -17,7 +17,7 @@ import java.util.Stack;
 public class _032_Longest_Valid_Parentheses {
 
 	public int longestValidParentheses(String s) {
-		Stack<Integer> stack = new Stack<>();
+		Stack<Integer> stack = new Stack();
 		int max = 0;
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) == ')' && !stack.isEmpty()
