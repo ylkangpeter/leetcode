@@ -1,0 +1,20 @@
+#CREATE TABLE `Trips` (
+#  `Id` bigint(10) DEFAULT NULL,
+#    `Client_Id` bigint(10) DEFAULT NULL,
+#      `Driver_Id` bigint(10) DEFAULT NULL,
+#        `City_Id` bigint(10) DEFAULT NULL,
+#          `Status` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+#            `Request_at` varchar(12) COLLATE utf8_bin DEFAULT NULL
+#            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+#CREATE TABLE `Users` (
+#  `Users_Id` bigint(10) DEFAULT NULL,
+#    `Banned` varchar(3) COLLATE utf8_bin DEFAULT NULL,
+#      `Role` varchar(10) COLLATE utf8_bin DEFAULT NULL
+#      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+select Request_at, ROUND( ( (SUM(Status like 'cancelled_by%') * 1.0) / SUM((Status is not null) ) ) , 2) as Rate 
+from Trips t, Users u where t.Client_Id = u.Users_Id AND Banned = 'NO' AND Request_at BETWEEN '2013-10-01' AND '2013-10-03' group by Request_at ;
