@@ -1,6 +1,7 @@
 package peter;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Write a program to check whether a given number is an ugly number.
@@ -13,24 +14,29 @@ import java.util.LinkedList;
  */
 public class _264_Ugly_Number_II {
     public int nthUglyNumber(int n) {
-        int a = 2;
-        int b = 3;
-        int c = 4;
-
-        LinkedList<Integer> list = new LinkedList<Integer>();
-        list.add(2);
-        list.add(3);
-        list.add(4);
-
-        int inx = 0;
-        while (n - 3 != 0) {
-            int tmp = Integer.MAX_VALUE;
-            for (int i : list) {
-                if (i*2)
+        Queue<Long> q2 = new LinkedList<Long>();
+        Queue<Long> q3 = new LinkedList<Long>();
+        Queue<Long> q5 = new LinkedList<Long>();
+        Long res = 1L;
+        q2.add(2L);
+        q3.add(3L);
+        q5.add(5L);
+        while (n-- > 1) {
+            if (q2.peek() < q3.peek() && q2.peek() < q5.peek()) {
+                res = q2.poll();
+                q2.add(res * 2);
+                q3.add(res * 3);
+                q5.add(res * 5);
+            } else if (q3.peek() < q2.peek() && q3.peek() < q5.peek()) {
+                res = q3.poll();
+                q3.add(res * 3);
+                q5.add(res * 5);
+            } else {
+                res = q5.poll();
+                q5.add(res * 5);
             }
-
         }
-        return 1;
+        return res.intValue();
     }
 
 
