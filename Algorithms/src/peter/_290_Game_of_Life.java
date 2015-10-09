@@ -45,13 +45,36 @@ public class _290_Game_of_Life {
                 if (i == 0 && j == 0) {
                     continue;
                 }
-                if (vert + j >= 0 && vert + j < board[0].length && hori + i >= 0 && hori + i < board.length) {
-                    totalLiveAround += (board[vert + j][hori + i] == 1 ? 1 : 0);
+                if (vert + i >= 0 && vert + i < board.length && hori + j >= 0 && hori + j < board[0].length) {
+                    if (board[vert + i][hori + j] == 1 || board[vert + i][hori + j] == 2) {
+                        totalLiveAround++;
+                    }
                 }
             }
         }
         if (totalLiveAround < 2) {
-            board[vert][hori] = 0;
+            if (board[vert][hori] == 1) {
+                board[vert][hori] = 2;
+            }
+        } else if (totalLiveAround > 3) {
+            if (board[vert][hori] == 1) {
+                board[vert][hori] = 2;
+            }
+        } else if (totalLiveAround == 3) {
+            if (board[vert][hori] == 0) {
+                board[vert][hori] = 3;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] board = {{1, 0, 0, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}, {1, 1, 1, 1}};
+        new _290_Game_of_Life().gameOfLife(board);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                System.out.print(board[i][j]);
+            }
+            System.out.println();
         }
     }
 }
