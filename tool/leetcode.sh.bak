@@ -15,13 +15,11 @@ function check () {
 
   if test -s $2;
   then
-    wc -l $2 | awk '{print $1}' > tmp
-    read cur_lines < tmp
-    read ori_lines < ${2}.cur
-
-    if [ "$cur_lines" -gt "$ori_lines" ];
+    wc -l $2 > ${2}.tmp
+    diff ${2}.tmp ${2}.cur > ${2}.res
+    if test -s ${2}.res;
     then
-        echo $cur_lines $ori_lines |mail -s "${2} leetcode problem updated!" $3
+      cat ${2}.res |mail -s "leetcode problem updated!" $3
     fi
   fi
 }
