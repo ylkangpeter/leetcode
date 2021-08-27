@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 @pinduoduo
+ * Copyright
  * <p>
  * project info: leetcode-peter
  */

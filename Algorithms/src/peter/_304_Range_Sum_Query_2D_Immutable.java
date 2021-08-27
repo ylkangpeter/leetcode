@@ -1,6 +1,8 @@
-public class Range_Sum_Query_2D_Immutable{    
+package peter;
+
+public class _304_Range_Sum_Query_2D_Immutable {
     int[][] sum = null;
-    public NumMatrix(int[][] matrix) {
+    public void NumMatrix(int[][] matrix) {
         if (matrix == null || matrix.length==0){
             return;
         }
