@@ -88,6 +88,7 @@ public class _430_Flatten_a_Multilevel_Doubly_Linked_List {
         public Node child;
     }
 
+
     public Node flatten(Node head) {
         Node node = head;
         Node prev = null;
