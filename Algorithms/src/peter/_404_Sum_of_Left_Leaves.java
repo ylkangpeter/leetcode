@@ -63,7 +63,7 @@ public class _404_Sum_of_Left_Leaves {
     public static void main(String[] args) {
         String[] arr = {"3", "9", "20", "-1", "-1", "15", "7"};
         TreeNode n = new TreeNode(0);
-        fromArray(arr, 0, n);
+//        fromArray(arr, 0, n);
         System.out.println(n.val);
         new _404_Sum_of_Left_Leaves().sumOfLeftLeaves(n);
     }
